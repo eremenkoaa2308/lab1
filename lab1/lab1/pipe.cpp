@@ -2,7 +2,7 @@
 #include <string>
 using namespace std;
 
-pipe::pipe(string n, int l, int d, int rep)
+pipe::pipe(string n, int l, int d, string rep)
 {
     name = n;
     length = l;
@@ -14,7 +14,7 @@ pipe::pipe()
     name = "Test";
     length = 10;
     diameter =20;
-    inRepair = true;
+    inRepair = "true";
 }
 string pipe::GetName() const
 {
@@ -31,12 +31,12 @@ int pipe::GetDiameter() const
     return this->diameter;
 }
 
-bool pipe::GetInRepair() const
+string pipe::GetInRepair() const
 {
     return this->inRepair;
 }
 
-void pipe::SetInRepair(bool s)
+void pipe::SetInRepair(string s)
 {
     inRepair = s;
 }
