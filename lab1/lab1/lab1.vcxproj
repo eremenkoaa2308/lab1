@@ -127,7 +127,13 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="kc.cpp" />
     <ClCompile Include="lab1.cpp" />
+    <ClCompile Include="pipe.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="kc.h" />
+    <ClInclude Include="pipe.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
