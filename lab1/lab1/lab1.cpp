@@ -1,6 +1,7 @@
 ﻿#include <iostream>
 #include "pipe.h"
 #include "kc.h"
+#include <fstream>
 using namespace std;
     
 
@@ -142,7 +143,39 @@ int main() {
                 cout << "You haven't created a kc yet\n";
             }
             break;
+        case 6:
+            ofstream out;
+            out.open("1.txt");
+            if (out.is_open())
+            {
+                if (Tpipe) {
+                    out << "Your pipe's name: " << Pipe->GetName() << "\n";
+                    out << "Your pipe's length: " << Pipe->GetLength() << "\n";
+                    out << "Your pipe's diameter: " << Pipe->GetDiameter() << "\n";
+                    out << "Is your pipe in repair: " << Pipe->GetInRepair() << "\n";
+                    out << "\n";
+                }
+                else {
+                    out << "You haven't created a pipe yet\n";
+                }
+                if (Tkc) {
+                    out << "Your kc's name: " << Kc->GetName() << "\n";
+                    out << "Your kc's number of factories: " << Kc->GetNumFac() << "\n";
+                    out << "Your kc's number of working factories: " << Kc->GetNumWorkFac() << "\n";
+                    out << "Your kc's efficiency: " << Kc->GetEff() << "\n";
+                    out << "\n";
+                }
+                else {
+                    out << "You haven't created a kc yet\n";
+                }
+            }
+            out.close();
+            cout << "File has been written\n";
+            break;
+
         }
+
+        
         
     }
 

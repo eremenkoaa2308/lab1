@@ -1,0 +1,10 @@
+Your pipe's name: Test
+Your pipe's length: 10
+Your pipe's diameter: 20
+Is your pipe in repair: true
+
+Your kc's name: Test
+Your kc's number of factories: 10
+Your kc's number of working factories: 2
+Your kc's efficiency: 0
+
