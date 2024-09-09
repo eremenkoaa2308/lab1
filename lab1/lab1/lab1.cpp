@@ -6,12 +6,12 @@ using namespace std;
     
 
 int main() {
-
+    ofstream out;
+    string line;
     bool Tpipe = false;
     pipe* Pipe = nullptr;
     bool Tkc = false;
     kc* Kc = nullptr;
-
     while (true) {
         int choose;
         cout << "Choose one of the actions\n";
@@ -144,7 +144,7 @@ int main() {
             }
             break;
         case 6:
-            ofstream out;
+
             out.open("1.txt");
             if (out.is_open())
             {
@@ -172,11 +172,26 @@ int main() {
             out.close();
             cout << "File has been written\n";
             break;
-
+        case 7:
+        {
+            std::ifstream in("1.txt"); // открываем файл для чтения
+            if (in.is_open())
+            {
+                std::string line;
+                while (std::getline(in, line))
+                {
+                    std::cout << line << std::endl;
+                }
+                in.close(); // закрываем файл
+            }
+            break; // Важно добавить break для завершения case 7
         }
+        case 0:
+            return 0;
+        }
+        
+        
 
-        
-        
     }
 
     delete Pipe;
