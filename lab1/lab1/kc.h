@@ -7,14 +7,14 @@ class kc
 		string name;
 		int numFac;
 		int numWorkFac;
-		bool eff;
+		int eff;
 	public:
-		kc(string n, int num, int numw, bool e);
+		kc(string n, int num, int numw, int e);
 		kc();
 		string GetName() const;
 		int GetNumFac() const;
 		int GetNumWorkFac() const;
-		bool GetEff() const;
+		int GetEff() const;
 		void SetNumWorkFac(int newFac);
 
 };

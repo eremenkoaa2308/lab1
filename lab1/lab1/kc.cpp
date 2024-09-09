@@ -1,6 +1,6 @@
 #include "kc.h"
 
-kc::kc(string n, int num, int numw, bool e)
+kc::kc(string n, int num, int numw, int e)
 {
 	name = n;
 	numFac = num;
@@ -31,7 +31,7 @@ int kc::GetNumWorkFac() const
 	return this->numWorkFac;
 }
 
-bool kc::GetEff() const
+int kc::GetEff() const
 {
 	return this->eff;
 }
