@@ -109,19 +109,40 @@ int main() {
                 cout << "You haven't created a kc yet\n";
             }
             break;
-        
+
         case 4:
-            cout << "Enter if you want edit repairing of your pipe: ";
-            string A;
-            cin >> A;
-            Pipe->SetInRepair(A);
-            cout << "Your pipe's name: " << Pipe->GetName() << "\n";
-            cout << "Your pipe's length: " << Pipe->GetLength() << "\n";
-            cout << "Your pipe's diameter: " << Pipe->GetDiameter() << "\n";
-            cout << "Is your pipe in repair: " << Pipe->GetInRepair() << "\n";
-            cout << "\n";
+            if (Tpipe) {
+                string A;
+                cout << "Enter if you want edit repairing of your pipe: ";
+                cin >> A;
+                Pipe->SetInRepair(A);
+                cout << "Your pipe's name: " << Pipe->GetName() << "\n";
+                cout << "Your pipe's length: " << Pipe->GetLength() << "\n";
+                cout << "Your pipe's diameter: " << Pipe->GetDiameter() << "\n";
+                cout << "Is your pipe in repair: " << Pipe->GetInRepair() << "\n";
+                cout << "\n";
+            }
+            else {
+                cout << "You haven't created a pipe yet\n";
+            }
             break;
-        
+        case 5:
+            if (Tkc) {
+                int A;
+                cout << "Enter the number of fuctories to work: ";
+                cin >> A;
+                Kc->SetNumWorkFac(A);
+                cout << "Your kc's name: " << Kc->GetName() << "\n";
+                cout << "Your kc's number of factories: " << Kc->GetNumFac() << "\n";
+                cout << "Your kc's number of working factories: " << Kc->GetNumWorkFac() << "\n";
+                cout << "Your kc's efficiency: " << Kc->GetEff() << "\n";
+                cout << "\n";
+            }
+            else {
+                cout << "You haven't created a kc yet\n";
+            }
+            break;
+        }
         
     }
 
