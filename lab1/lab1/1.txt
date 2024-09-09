@@ -1,6 +1,10 @@
-Your pipe's name: YRA
+Your pipe's name: TEST
 Your pipe's length: 100
-Your pipe's diameter: 200
-Is your pipe in repair: RABOTAET
+Your pipe's diameter: 100
+Is your pipe in repair: repair
 
-You haven't created a kc yet
+Your kc's name: TWST
+Your kc's number of factories: 20
+Your kc's number of working factories: 20
+Your kc's efficiency: 100
+
