@@ -3,6 +3,8 @@
 #include "kc.h"
 #include <fstream>
 #include <sstream>
+#include <limits>
+#include <thread>
 using namespace std;
 
 bool isInteger(const string& s) {
@@ -46,15 +48,15 @@ pipe case1(bool& Tpipe) {
         if (T == 'Y' || T == 'y') {
             string entName;
             string input1;
-            string input2;
-            string input3;
             int entLen;
             int entDia;
             bool entRep;
-            cout << "Enter a name\n";
-            cin >> entName;
+            cout << "Enter a name" << endl;
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+            getline(cin, entName);
+            this_thread::sleep_for(chrono::seconds(1));
             while (true) {
-                cout << "Enter a length\n";
+                cout << "Enter a length"<<endl;
                 cin >> input1;
                 if (isInteger(input1)) {
                     std::stringstream ss(input1);
@@ -72,9 +74,9 @@ pipe case1(bool& Tpipe) {
             }
             while (true) {
                 cout << "Enter a diameter\n";
-                cin >> input2;
-                if (isInteger(input2)) {
-                    stringstream ss(input2);
+                cin >> input1;
+                if (isInteger(input1)) {
+                    stringstream ss(input1);
                     ss >> entDia;
                     if (entDia > 0) {
                         break;
@@ -89,12 +91,12 @@ pipe case1(bool& Tpipe) {
             }
             while (true) {
                 cout << "Enter if your pipe is in repair\n";
-                cin >> input3;
-                if (input3 == "true" || input3 == "True" || input3 == "T" || input3 == "t") {
+                cin >> input1;
+                if (input1 == "true" || input1 == "True" || input1 == "T" || input1 == "t") {
                     entRep = true;
                     break;
                 }
-                else if (input3 == "false" || input3 == "False" || input3 == "F" || input3 == "f") {
+                else if (input1 == "false" || input1 == "False" || input1 == "F" || input1 == "f") {
                     entRep = false;
                     break;
                 }
@@ -127,8 +129,9 @@ kc case2(bool& Tkc) {
             string input1;
             string input2;
             string input3;
-            cout << "Enter a name\n";
-            cin >> entName;
+            cout << "Enter a name" << endl;
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+            getline(cin, entName);
             while (true) {
                 cout << "Enter number of factories\n";
                 cin >> input1;
