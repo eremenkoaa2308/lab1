@@ -1,7 +1,7 @@
 #pragma once
 #include <string>
 using namespace std;
-class kc
+struct kc
 {
 	private:
 		string name;

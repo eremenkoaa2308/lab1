@@ -2,18 +2,20 @@
 #include "pipe.h"
 #include "kc.h"
 #include <fstream>
+#include <sstream>
 using namespace std;
-    
 
-int main() {
-    ofstream out;
-    string line;
-    bool Tpipe = false;
-    pipe* Pipe = nullptr;
-    bool Tkc = false;
-    kc* Kc = nullptr;
+bool isInteger(const string& s) {
+    istringstream iss(s);
+    int num;
+    iss >> num;
+    return !iss.fail() && iss.eof();
+}
+    
+int getChoose() {
+    string input;
+    int choose;
     while (true) {
-        int choose;
         cout << "Choose one of the actions\n";
         cout << "1. Create a pipe\n";
         cout << "2. Create a kc\n";
@@ -23,7 +25,27 @@ int main() {
         cout << "6. Save\n";
         cout << "7. Download\n";
         cout << "0. Exit\n";
-        cin >> choose;
+        cin >> input;
+
+        if (isInteger(input)) {
+            stringstream ss(input);
+            ss >> choose;
+            return choose;
+        }
+        else {
+            cout << "Invalid input. Please enter a valid integer\n";
+        }
+    }
+}
+int main() {
+    ofstream out;
+    string line;
+    bool Tpipe = false;
+    pipe* Pipe = nullptr;
+    bool Tkc = false;
+    kc* Kc = nullptr;
+    while (true) {
+        int choose = getChoose();
         switch (choose) {
         case 1:
             if (!Tpipe) {
@@ -34,7 +56,7 @@ int main() {
                     string entName;
                     int entLen;
                     int entDia;
-                    string entRep;
+                    bool entRep;
                     cout << "Enter a name\n";
                     cin >> entName;
                     cout << "Enter a length\n";
@@ -93,7 +115,13 @@ int main() {
                 cout << "Your pipe's name: " << Pipe->GetName() << "\n";
                 cout << "Your pipe's length: " << Pipe->GetLength() << "\n";
                 cout << "Your pipe's diameter: " << Pipe->GetDiameter() << "\n";
-                cout << "Is your pipe in repair: " << Pipe->GetInRepair() << "\n";
+                if (Pipe->GetInRepair() == 1) {
+                    cout << "Is your pipe in repair: " << "true" << "\n";
+                }
+                else {
+                    cout << "Is your pipe in repair: " << "false" << "\n";
+                }
+
                 cout << "\n";
             }
             else {
@@ -113,7 +141,7 @@ int main() {
 
         case 4:
             if (Tpipe) {
-                string A;
+                bool A;
                 cout << "Enter if you want edit repairing of your pipe: ";
                 cin >> A;
                 Pipe->SetInRepair(A);
@@ -193,7 +221,6 @@ int main() {
         
 
     }
-
     delete Pipe;
     delete Kc;
     return 0;
