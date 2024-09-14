@@ -15,7 +15,7 @@ struct kc
 		int GetNumFac() const;
 		int GetNumWorkFac() const;
 		int GetEff() const;
-		void SetNumWorkFac(int newFac);
+		bool SetNumWorkFac(bool A);
 
 };
 

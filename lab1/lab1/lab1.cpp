@@ -195,6 +195,36 @@ kc case2(bool& Tkc) {
     }
 
 }
+void showPipe(pipe* Pipe, bool Tpipe) {
+    if (Tpipe) {
+        cout << "Your pipe's name: " << Pipe->GetName() << "\n";
+        cout << "Your pipe's length: " << Pipe->GetLength() << "\n";
+        cout << "Your pipe's diameter: " << Pipe->GetDiameter() << "\n";
+        if (Pipe->GetInRepair() == 1) {
+            cout << "Is your pipe in repair: " << Pipe->GetInRepair() << "\n";
+        }
+        else {
+            cout << "Is your pipe in repair: " << "false" << "\n";
+        }
+
+        cout << "\n";
+    }
+    else {
+        cout << "You haven't created a pipe yet\n";
+    }
+}
+void showKc(kc* Kc, bool Tkc) {
+    if (Tkc) {
+        cout << "Your kc's name: " << Kc->GetName() << "\n";
+        cout << "Your kc's number of factories: " << Kc->GetNumFac() << "\n";
+        cout << "Your kc's number of working factories: " << Kc->GetNumWorkFac() << "\n";
+        cout << "Your kc's efficiency: " << Kc->GetEff() << "\n";
+        cout << "\n";
+    }
+    else {
+        cout << "You haven't created a kc yet\n";
+    }
+}
 int main() {
     ofstream out;
     string line;
@@ -213,40 +243,15 @@ int main() {
             *Kc = case2(Tkc);
             break;
         case 3:
-            if (Tpipe) {
-                cout << "Your pipe's name: " << Pipe->GetName() << "\n";
-                cout << "Your pipe's length: " << Pipe->GetLength() << "\n";
-                cout << "Your pipe's diameter: " << Pipe->GetDiameter() << "\n";
-                if (Pipe->GetInRepair() == 1) {
-                    cout << "Is your pipe in repair: " << Pipe->GetInRepair() << "\n";
-                }
-                else {
-                    cout << "Is your pipe in repair: " << "false" << "\n";
-                }
-
-                cout << "\n";
-            }
-            else {
-                cout << "You haven't created a pipe yet\n";
-            }
-            if (Tkc) {
-                cout << "Your kc's name: " << Kc->GetName() << "\n";
-                cout << "Your kc's number of factories: " << Kc->GetNumFac() << "\n";
-                cout << "Your kc's number of working factories: " << Kc->GetNumWorkFac() << "\n";
-                cout << "Your kc's efficiency: " << Kc->GetEff() << "\n";
-                cout << "\n";
-            }
-            else {
-                cout << "You haven't created a kc yet\n";
-            }
+            showPipe(Pipe, Tpipe);
+            showKc(Kc, Tkc);
             break;
-
         case 4:
             if (Tpipe) {
                 string A;
                 bool T;
                 while (true) {
-                    cout << "Enter if you want edit repairing of your pipe: ";
+                    cout << "Enter if you want edit repairing of your pipe: \n";
                     cin >> A;
                     if (A == "true" || A == "True" || A == "T" || A == "t") {
                         T = true;
@@ -262,16 +267,7 @@ int main() {
                 }
 
                 Pipe->SetInRepair(T);
-                cout << "Your pipe's name: " << Pipe->GetName() << "\n";
-                cout << "Your pipe's length: " << Pipe->GetLength() << "\n";
-                cout << "Your pipe's diameter: " << Pipe->GetDiameter() << "\n";
-                if (Pipe->GetInRepair() == 1) {
-                    cout << "Is your pipe in repair: " << Pipe->GetInRepair() << "\n";
-                }
-                else {
-                    cout << "Is your pipe in repair: " << "false" << "\n";
-                }
-                cout << "\n";
+                showPipe(Pipe, Tpipe);
             }
             else {
                 cout << "You haven't created a pipe yet\n";
@@ -279,22 +275,37 @@ int main() {
             break;
         case 5:
             if (Tkc) {
-                int A;
-                cout << "Enter the number of fuctories to work: ";
-                cin >> A;
-                Kc->SetNumWorkFac(A);
-                cout << "Your kc's name: " << Kc->GetName() << "\n";
-                cout << "Your kc's number of factories: " << Kc->GetNumFac() << "\n";
-                cout << "Your kc's number of working factories: " << Kc->GetNumWorkFac() << "\n";
-                cout << "Your kc's efficiency: " << Kc->GetEff() << "\n";
-                cout << "\n";
+                bool A;
+                string T;
+                while (true) {
+                    cout << "Enter + (plus) if you want to add one working factory. Enter - (minus) if you want to remove one working factory\n";
+                    cin >> T;
+                    if (T == "plus" || T == "+" || T == "Plus") {
+                        A = true;
+                        break;
+                    }
+                    else if (T == "Minus" || T == "minus" || T == "-" ) {
+                        A = false;
+                        break;
+                    }
+                    else {
+                        cout << "Invalid input for inRepair. It should be boolean. Try again! (true/false)\n";
+                    }
+                }
+                
+                if (Kc->SetNumWorkFac(A)) {
+                    showKc(Kc, Tkc);
+                }
+                else {
+                    cout << "The error in adding or removing a factory! Check the number of working factories and try again!\n";
+                    showKc(Kc, Tkc);
+                }
             }
             else {
                 cout << "You haven't created a kc yet\n";
             }
             break;
         case 6:
-
             out.open("1.txt");
             if (out.is_open())
             {

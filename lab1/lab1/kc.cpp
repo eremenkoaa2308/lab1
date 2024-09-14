@@ -36,13 +36,25 @@ int kc::GetEff() const
 	return this->eff;
 }
 
-void kc::SetNumWorkFac(int newFac)
+bool kc::SetNumWorkFac(bool A)
 {
-	if (newFac >= numFac){
-		numWorkFac = numFac;
+	if (A) {
+		if ((numWorkFac+1) > numFac) {
+			return false;
+		}
+		else {
+			numWorkFac++;
+			return true;
+		}
 	}
 	else {
-		numWorkFac = newFac;
+		if ((numWorkFac-1) < 0) {
+			return false;
+		}
+		else {
+			numWorkFac--;
+			return true;
+		}
 	}
 }
 
