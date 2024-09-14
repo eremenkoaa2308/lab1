@@ -8,6 +8,7 @@ pipe::pipe(string n, int l, int d, bool rep)
     length = l;
     diameter = d;
     inRepair = rep;
+
 }
 pipe::pipe()
 {
@@ -18,22 +19,22 @@ pipe::pipe()
 }
 string pipe::GetName() const
 {
-    return this->name;
+    return name;
 }
 
 int pipe::GetLength() const
 {
-    return this->length;
+    return length;
 }
 
 int pipe::GetDiameter() const
 {
-    return this->diameter;
+    return diameter;
 }
 
 bool pipe::GetInRepair() const
 {
-    return this->inRepair;
+    return inRepair;
 }
 
 void pipe::SetInRepair(bool s)
