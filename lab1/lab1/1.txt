@@ -1,10 +1,10 @@
-Your pipe's name: tere rere 24
-Your pipe's length: 54
-Your pipe's diameter: 52
+Your pipe's name: rec 34
+Your pipe's length: 32
+Your pipe's diameter: 34
 Is your pipe in repair: 1
 
-Your kc's name: KC 52 228
-Your kc's number of factories: 43
-Your kc's number of working factories: 34
-Your kc's efficiency: 90
+Your kc's name: 243 tre
+Your kc's number of factories: 3
+Your kc's number of working factories: 2
+Your kc's efficiency: 54
 

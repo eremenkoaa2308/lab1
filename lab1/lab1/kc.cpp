@@ -52,7 +52,7 @@ bool kc::SetNumWorkFac(bool A)
 			return false;
 		}
 		else {
-			numWorkFac--;
+			numWorkFac=numWorkFac-1;
 			return true;
 		}
 	}
