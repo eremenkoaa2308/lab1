@@ -1,7 +1,7 @@
 #pragma once
 #include <string>
 using namespace std;
-struct kc
+struct cs
 {
 	private:
 		string name;
@@ -9,8 +9,8 @@ struct kc
 		int numWorkFac;
 		int eff;
 	public:
-		kc(string n, int num, int numw, int e);
-		kc();
+		cs(string n, int num, int numw, int e);
+		cs();
 		string GetName() const;
 		int GetNumFac() const;
 		int GetNumWorkFac() const;

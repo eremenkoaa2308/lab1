@@ -1,6 +1,6 @@
-#include "kc.h"
+#include "cs.h"
 
-kc::kc(string n, int num, int numw, int e)
+cs::cs(string n, int num, int numw, int e)
 {
 	name = n;
 	numFac = num;
@@ -8,7 +8,7 @@ kc::kc(string n, int num, int numw, int e)
 	eff = e;
 }
 
-kc::kc()
+cs::cs()
 {
 	name = "Test";
 	numFac = 10;
@@ -16,27 +16,27 @@ kc::kc()
 	eff = false;
 }
 
-string kc::GetName() const
+string cs::GetName() const
 {
 	return this->name;
 }
 
-int kc::GetNumFac() const
+int cs::GetNumFac() const
 {
 	return this->numFac;
 }
 
-int kc::GetNumWorkFac() const
+int cs::GetNumWorkFac() const
 {
 	return this->numWorkFac;
 }
 
-int kc::GetEff() const
+int cs::GetEff() const
 {
 	return this->eff;
 }
 
-bool kc::SetNumWorkFac(bool A)
+bool cs::SetNumWorkFac(bool A)
 {
 	if (A) {
 		if ((numWorkFac+1) > numFac) {

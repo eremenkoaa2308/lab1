@@ -127,15 +127,13 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="kc.cpp" />
+    <ClCompile Include="cs.cpp" />
     <ClCompile Include="lab1.cpp" />
     <ClCompile Include="pipe.cpp" />
-    <ClCompile Include="pipe_and_kc.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="kc.h" />
+    <ClInclude Include="cs.h" />
     <ClInclude Include="pipe.h" />
-    <ClInclude Include="pipe_and_kc.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

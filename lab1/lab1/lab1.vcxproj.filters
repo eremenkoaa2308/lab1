@@ -21,10 +21,7 @@
     <ClCompile Include="pipe.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
-    <ClCompile Include="kc.cpp">
-      <Filter>Исходные файлы</Filter>
-    </ClCompile>
-    <ClCompile Include="pipe_and_kc.cpp">
+    <ClCompile Include="cs.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
   </ItemGroup>
@@ -32,10 +29,7 @@
     <ClInclude Include="pipe.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
-    <ClInclude Include="kc.h">
-      <Filter>Файлы заголовков</Filter>
-    </ClInclude>
-    <ClInclude Include="pipe_and_kc.h">
+    <ClInclude Include="cs.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
   </ItemGroup>
