@@ -28,6 +28,7 @@ int getChoose() {
         cout << "5. Edit the cs\n";
         cout << "6. Save\n";
         cout << "7. Download\n";
+        cout << "8. Filter\n";
         cout << "0. Exit\n";
         cin >> input;
 
@@ -234,6 +235,25 @@ void showCs(const vector<cs> Css) {
         cout << "You haven't created any css yet\n";
     }
 }
+void showOnePipe(pipe Pipe) {
+    cout << "Your pipe's name: " << Pipe.GetName() << "\n";
+    cout << "Your pipe's length: " << Pipe.GetLength() << "\n";
+    cout << "Your pipe's diameter: " << Pipe.GetDiameter() << "\n";
+    if (Pipe.GetInRepair() == 1) {
+        cout << "Is your pipe in repair: " << "true" << "\n";
+    }
+    else {
+        cout << "Is your pipe in repair: " << "false" << "\n";
+    }
+    cout << "\n";
+}
+void showOneCs(cs Cs) {
+    cout << "Your cs's name: " << Cs.GetName() << "\n";
+    cout << "Your cs's number of factories: " << Cs.GetNumFac() << "\n";
+    cout << "Your cs's number of working factories: " << Cs.GetNumWorkFac() << "\n";
+    cout << "Your cs's efficiency: " << Cs.GetEff() << "\n";
+    cout << "\n";
+}
 void editPipe(vector<pipe>& Pipes) {
     string A;
     string num;
@@ -424,70 +444,110 @@ void read_file(vector<pipe>& Pipes, vector<cs>& Css) {
         in.close();
     }
 }
-//    ifstream in("1.txt");
-//    if (in.is_open())
-//    {
-//        string line;
-//        string name1;
-//        string name2;
-//        int Num;
-//        int Num2;
-//        bool A;
-//        int Num3;
-//        int Num4;
-//        int Num5;
-//        int num_of_line = 1;
-//        while (getline(in, line))
-//        {
-//            if (line == "You haven't created a pipe yet") {
-//                num_of_line = 6;
-//            }
-//            if (line == "You haven't created a cs yet") {
-//                num_of_line = 10;
-//            }
-//            size_t pos = line.find(": ");//we find position of ": " in fileeee
-//            
-//            if (pos != string::npos) {
-//                string value = line.substr(pos + 2);//+2 to skip ": "
-//                if (num_of_line == 1) {
-//                    name1 = value;
-//                }
-//                if (num_of_line == 2) {
-//                    Num = stoi(value);
-//                }
-//                if (num_of_line == 3) {
-//                    Num2 = stoi(value);
-//                }
-//                if (num_of_line == 4) {
-//                    if (value == "1") {
-//                        A = true;
-//                    }
-//                    else if (value == "false" || value == "False" || value == "F" || value == "f") {
-//                        A = false;
-//                    }
-//                    Pipe = pipe(name1, Num, Num2, A);
-//                    Tpipe = true;
-//                }
-//                if (num_of_line == 5) {
-//                    name2 = value;
-//                }
-//                if (num_of_line == 6) {
-//                    Num3 = stoi(value);
-//                }
-//                if (num_of_line == 7) {
-//                    Num4 = stoi(value);
-//                }
-//                if (num_of_line == 8) {
-//                    Num5 = stoi(value);
-//                    Cs = cs(name2, Num3, Num4, Num5);
-//                    Tcs = true;
-//                }
-//                num_of_line = num_of_line + 1;
-//            }
-//        }
-//        in.close();
-//    }
-//}
+void filt(vector<pipe> Pipes, vector<cs> Css) {
+    string ch;
+    string h;
+    int choose;
+    bool A = false;
+    while (true) {
+        cout << "Enter what objects you want to filter: pipes or css (p/c)" << endl;
+        cin >> ch;
+        if (ch == "p" || ch == "P" || ch == "c" || ch == "C") {
+            A = true;
+            break;
+        }
+        else {
+            cout << "Enter letter p or c!"<<endl;
+        }
+    }
+    if (ch == "p" || ch == "P") {
+        while (true) {
+            cout << "Enter what parameter you want to filter: name or repair"<<endl;
+            cin >> h;
+            if (h == "n" || h == "N" || h == "name" || h == "Name") {
+                choose = 0;
+                break;
+            }
+            else if (h == "r" || h == "R" || h == "repair" || h == "Repair"){
+                choose = 1;
+                break;
+            }
+            else {
+                cout << "Enter a letter n or r" << endl;
+            }
+        }
+        if (choose == 0) {
+            cout << "Enter a name, you want to find belong pipes" << endl;
+            string n;
+            cin >> n;
+            for (int i = 0; i < Pipes.size(); i++) {
+                if (Pipes[i].GetName() == n) {
+                    showOnePipe(Pipes[i]);
+                }
+            }
+        }
+        if (choose == 1) {
+            cout << "Enter repair parameter, you want to find belong pipes" << endl;
+            string n;
+            bool A;
+            cin >> n;
+            if (n == "t" || n == "T" || n == "true" || n == "True" || n == "1") {
+                A = true;
+            }
+            else {
+                A = false;
+            }
+            for (int i = 0; i < Pipes.size(); i++) {
+                if ((Pipes[i].GetInRepair() && A) || (!Pipes[i].GetInRepair() && !A)) {
+                    showOnePipe(Pipes[i]);
+                }
+            }
+        }
+    }
+    if (ch == "c" || ch == "C") {
+        while (true) {
+            cout << "Enter what parameter you want to filter: name or efficiency" << endl;
+            cin >> h;
+            if (h == "n" || h == "N" || h == "name" || h == "Name") {
+                choose = 2;
+                break;
+            }
+            else if (h == "e" || h == "E" || h == "efficiency" || h == "Efficiency") {
+                choose = 3;
+                break;
+            }
+            else {
+                cout << "Enter a letter n or e" << endl;
+            }
+        }
+        if (choose == 2) {
+            cout << "Enter a name, you want to find belong css" << endl;
+            string n;
+            cin >> n;
+            for (int i = 0; i < Css.size(); i++) {
+                if (Css[i].GetName() == n) {
+                    showOneCs(Css[i]);
+                }
+            }
+        }
+        if (choose == 3) {
+            cout << "Enter efficiency parameter you want to filter" << endl;
+            string n;
+            int ef;
+            cin >> n;
+            if (isInteger(n)) {
+                ef = stoi(n);
+                for (int i = 0; i < Css.size(); i++) {
+                    if (Css[i].GetEff() == ef) {
+                        showOneCs(Css[i]);
+                    }
+                }
+            }
+        }
+    }
+
+}
+
 int main() {
 
     string line;
@@ -521,6 +581,10 @@ int main() {
         {
             read_file(Pipes,Css);
             break; 
+        }
+        case 8: {
+            filt(Pipes, Css);
+            break;
         }
         case 0:
             return 0;
