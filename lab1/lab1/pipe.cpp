@@ -42,3 +42,8 @@ void pipe::SetInRepair(bool s)
     inRepair = s;
 }
 
+void pipe::SetName(string st)
+{
+    name = st;
+}
+

@@ -15,6 +15,8 @@ struct cs
 		int GetNumFac() const;
 		int GetNumWorkFac() const;
 		int GetEff() const;
+		void SetName(string st);
+		void SetEff(int n);
 		bool SetNumWorkFac(bool A);
 
 };

@@ -29,6 +29,7 @@ int getChoose() {
         cout << "6. Save\n";
         cout << "7. Download\n";
         cout << "8. Filter\n";
+        cout << "9. Delete\n";
         cout << "0. Exit\n";
         cin >> input;
 
@@ -444,7 +445,7 @@ void read_file(vector<pipe>& Pipes, vector<cs>& Css) {
         in.close();
     }
 }
-void filt(vector<pipe> Pipes, vector<cs> Css) {
+void filt(vector<pipe>& Pipes, vector<cs>& Css) {
     string ch;
     string h;
     int choose;
@@ -479,17 +480,34 @@ void filt(vector<pipe> Pipes, vector<cs> Css) {
         if (choose == 0) {
             cout << "Enter a name, you want to find belong pipes" << endl;
             string n;
+            string a;
+            string h;
             cin >> n;
             for (int i = 0; i < Pipes.size(); i++) {
                 if (Pipes[i].GetName() == n) {
                     showOnePipe(Pipes[i]);
                 }
             }
+            cout << "Do you want to redact these pipes? (t/f)" << endl;
+            cin >> a;
+            cout << "Enter a new name"<<endl;
+            cin >> h;
+            if (a == "t" || a == "T" || a == "True" || a == "true") {
+                for (int i = 0; i < Pipes.size(); i++) {
+                    if (Pipes[i].GetName() == n) {
+                        Pipes[i].SetName(h);
+                    }
+                }
+            }
+
         }
         if (choose == 1) {
             cout << "Enter repair parameter, you want to find belong pipes" << endl;
             string n;
+            string a;
+            string h;
             bool A;
+            bool B;
             cin >> n;
             if (n == "t" || n == "T" || n == "true" || n == "True" || n == "1") {
                 A = true;
@@ -500,6 +518,23 @@ void filt(vector<pipe> Pipes, vector<cs> Css) {
             for (int i = 0; i < Pipes.size(); i++) {
                 if ((Pipes[i].GetInRepair() && A) || (!Pipes[i].GetInRepair() && !A)) {
                     showOnePipe(Pipes[i]);
+                }
+            }
+            cout << "Do you want to redact these pipes? (t/f)" << endl;
+            cin >> a;
+            cout << "Enter a new inRepair parameter" << endl;
+            cin >> h;
+            if (h == "t" || h == "T" || h == "True" || h == "true") {
+                B = true;
+            }
+            else {
+                B = false;
+            }
+            if (a == "t" || a == "T" || a == "True" || a == "true") {
+                for (int i = 0; i < Pipes.size(); i++) {
+                    if ((Pipes[i].GetInRepair() && A) || (!Pipes[i].GetInRepair() && !A)) {
+                        Pipes[i].SetInRepair(B);
+                    }
                 }
             }
         }
@@ -523,16 +558,33 @@ void filt(vector<pipe> Pipes, vector<cs> Css) {
         if (choose == 2) {
             cout << "Enter a name, you want to find belong css" << endl;
             string n;
+            string a;
+            string h;
             cin >> n;
             for (int i = 0; i < Css.size(); i++) {
                 if (Css[i].GetName() == n) {
                     showOneCs(Css[i]);
                 }
             }
+            cout << "Do you want to redact these css? (t/f)" << endl;
+            cin >> a;
+            cout << "Enter a new name" << endl;
+            cin >> h;
+            if (a == "t" || a == "T" || a == "True" || a == "true") {
+                for (int i = 0; i < Pipes.size(); i++) {
+                    if (Css[i].GetName() == n) {
+                        Css[i].SetName(h);
+                    }
+                }
+            }
+
         }
         if (choose == 3) {
             cout << "Enter efficiency parameter you want to filter" << endl;
             string n;
+            string a;
+            string h;
+            int e;
             int ef;
             cin >> n;
             if (isInteger(n)) {
@@ -542,14 +594,99 @@ void filt(vector<pipe> Pipes, vector<cs> Css) {
                         showOneCs(Css[i]);
                     }
                 }
+                cout << "Do you want to redact these css? (t/f)" << endl;
+                cin >> a;
+                cout << "Enter a new efficiency" << endl;
+                cin >> h;
+                if (isInteger(h)) {
+                    e = stoi(h);
+                    if (a == "t" || a == "T" || a == "True" || a == "true") {
+                        for (int i = 0; i < Pipes.size(); i++) {
+                            if (Css[i].GetEff() == ef) {
+                                Css[i].SetEff(e);
+                            }
+                        }
+                    }
+                }
+                else {
+                    cout << "Error in input data!!!" << endl;
+                }
+                
             }
         }
     }
 
 }
+void delPC(vector<pipe>& Pipes, vector<cs>& Css) {
+    string ch;
+    string h;
+    bool A;
+    int number;
+    string input;
+    vector<int> numbers;
+    istringstream iss(input);
+    while (true) {
+        cout << "Enter what objects you want to delete: pipes or css (p/c)" << endl;
+        cin >> ch;
+        if (ch == "p" || ch == "P") {
+            A = true;
+            break;
+        }
+        else if (ch == "c" || ch == "C") {
+            A = false;
+            break;
+        }
+        else {
+            cout << "Enter letter p or c!" << endl;
+        }
+    }
+
+
+    if (A) {
+        showPipe(Pipes);
+        cout << "Enter id's of pipes you want to delete (separated by a space)" << endl;
+    }
+    else {
+        showCs(Css);
+        cout << "Enter id's of css you want to delete (separated by a space)" << endl;
+    }
+    cin.ignore(numeric_limits<streamsize>::max(), '\n');
+    getline(cin, input);
+    int pos = 0;
+    string token;
+    while ((pos = input.find(" ")) != string::npos) {
+        token = input.substr(0, pos);
+        numbers.push_back(stoi(token)); //Converting a substring to a number
+        input.erase(0, pos + 1);
+    }
+    numbers.push_back(stoi(input)); //Adding the last number
+
+    if (numbers.size() != 0) {
+        if (A) {
+            int z = 0;
+            for (int i = 0; i <= Pipes.size(); i++) {
+                if ((numbers[i]-z) <= Pipes.size()) {
+                    Pipes.erase(Pipes.begin() + (numbers[i]-1-z));
+                    z++;
+                }
+            }
+        }
+        else {
+            int z = 0;
+            for (int i = 0; i <= Css.size(); ++i) {
+                if ((numbers[i]-z) <= Css.size()) {
+                    Css.erase(Css.begin() + (numbers[i] - 1-z));
+                    z++;
+                }
+            }
+        }
+    }
+    else {
+        cout << "Entered numbers are incorrect! Try again!!!" << endl;
+    }
+}
 
 int main() {
-
     string line;
     vector<pipe> Pipes;
     vector<cs> Css;
@@ -584,6 +721,10 @@ int main() {
         }
         case 8: {
             filt(Pipes, Css);
+            break;
+        }
+        case 9: {
+            delPC(Pipes, Css);
             break;
         }
         case 0:

@@ -36,6 +36,16 @@ int cs::GetEff() const
 	return this->eff;
 }
 
+void cs::SetName(string st)
+{
+	name = st;
+}
+
+void cs::SetEff(int n)
+{
+	eff = n;
+}
+
 bool cs::SetNumWorkFac(bool A)
 {
 	if (A) {

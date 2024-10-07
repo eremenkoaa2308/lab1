@@ -17,5 +17,6 @@ struct pipe
 		int GetDiameter() const;
 		bool GetInRepair() const;
 		void SetInRepair(bool s);
+		void SetName(string st);
 };
 
